@@ -4,6 +4,7 @@ TESTING CLASS, CAPTURING VIDEO
 
 import cv2
 import time
+import numpy as np
 
 # Open the default camera
 cam = cv2.VideoCapture(0)
@@ -23,6 +24,19 @@ prev_time = time.time()
 
 while True:
     ret, frame = cam.read()
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # green_channel = frame.copy()
+    # green_channel[:, :, 0] = 0
+    # green_channel[:, :, 2] = 0
+    # blue_channel = frame.copy()
+    # blue_channel[:, :, 1] = 0
+    # blue_channel[:, :, 2] = 0
+    # red_channel = frame.copy()
+    # red_channel[:, :, 0] = 0
+    # red_channel[:, :, 1] = 0
+    # gray_frame = 0.114 * blue_channel + 0.587 * green_channel + 0.299 * red_channel
+
+    # frame = gray_frame / 225
 
     if not ret:
         break
@@ -33,7 +47,7 @@ while True:
 
     text = f"FPS: {int(fps)}"
     cv2.putText(frame, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
-                1, (0, 255, 0), 2, cv2.LINE_AA)
+                1, (255, 255, 255), 2, cv2.LINE_AA)
 
     # Write the frame to the output file
     # out.write(frame)
