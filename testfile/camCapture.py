@@ -17,9 +17,9 @@ frame_height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT)
 # Define the codec(coder/decoder) and create VideoWriter object
 # Four Character Code for codec is `mp4v`
 codec = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('output.mp4', codec, 20, (frame_width, frame_height))
+# out = cv2.VideoWriter('output.mp4', codec, 20, (frame_width, frame_height))
 
-prev_time = 0
+prev_time = time.time()
 
 while True:
     ret, frame = cam.read()
@@ -31,16 +31,17 @@ while True:
     fps = 1 / (curr_time - prev_time)
     prev_time = curr_time
 
-    # TODO: not working properly
     text = f"FPS: {int(fps)}"
     cv2.putText(frame, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2, cv2.LINE_AA)
 
     # Write the frame to the output file
-    out.write(frame)
+    # out.write(frame)
 
     # Display the captured frame
     cv2.imshow('Camera', frame)
+
+    prev_time = time.time()
 
     # Press 'q' to exit the loop
     if cv2.waitKey(1) == ord('q'):
@@ -48,5 +49,5 @@ while True:
 
 # Release the capture and writer objects
 cam.release()
-out.release()
+# out.release()
 cv2.destroyAllWindows()
