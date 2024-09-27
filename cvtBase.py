@@ -1,13 +1,9 @@
 """
-The abstract base class of
-mosaic (dimensional reduction) processor
+The abstract class of image to ascii converter
+mapping grayscale value to ascii char
 
-Dimensional reduction image processor should
-inherit from this interface
-and implement api in the class
-
-input: image (np.ndarray)
-output: image (np.ndarray)
+input: low resolution image -- ndarray
+output: ascii scheme array
 """
 
 from abc import ABC, abstractmethod
@@ -17,17 +13,17 @@ class CvtBase(ABC):
     def __init__(self, output_resolution : tuple):
         """
         Constructor takes in a tuple of (width, height),
-        defining the output image shape as class attributes
+        defining the output ascii array shape as class attributes
         """
         self.height = output_resolution[0]
         self.width = output_resolution[1]
 
     @abstractmethod
-    def downscale_image(input_image) -> np.ndarray:
+    def ascii_scheme(reduced_image) -> np.ndarray:
         """
-        Return the image (array) of reduced image 
+        Return the array scheme of ascii characters
 
-        input: origin frame image from webcam
-        output: reduced image (array) 
+        input: reduced resolution image -- np.ndarray
+        output: 2D ascii char array
         """
         pass
