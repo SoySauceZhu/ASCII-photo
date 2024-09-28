@@ -18,7 +18,7 @@ class RenderBase(ABC):
         self.width = output_resolution[1]
 
     @abstractmethod
-    def ascii_frame(ascii_array) -> np.ndarray:
+    def ascii_frame(self, ascii_array) -> np.ndarray:
         """
         Return the image of ascii characters
 

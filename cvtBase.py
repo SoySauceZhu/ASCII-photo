@@ -10,16 +10,11 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 class CvtBase(ABC):
-    def __init__(self, output_resolution : tuple):
-        """
-        Constructor takes in a tuple of (width, height),
-        defining the output ascii array shape as class attributes
-        """
-        self.height = output_resolution[0]
-        self.width = output_resolution[1]
+    def __init__(self):
+        pass
 
     @abstractmethod
-    def ascii_scheme(reduced_image) -> np.ndarray:
+    def ascii_scheme(self, reduced_image) -> np.ndarray:
         """
         Return the array scheme of ascii characters
 

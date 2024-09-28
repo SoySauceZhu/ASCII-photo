@@ -15,16 +15,16 @@ import numpy as np
 
 
 class ProcessBase(ABC):
-    def __init__(self, output_resolution: tuple):
+    def __init__(self, reduced_resolution: tuple):
         """
         Constructor takes in a tuple of (width, height),
         defining the output image shape as class attributes
         """
-        self.height = output_resolution[0]
-        self.width = output_resolution[1]
+        self.height = reduced_resolution[0]
+        self.width = reduced_resolution[1]
 
     @abstractmethod
-    def downscale_image(input_image) -> np.ndarray:
+    def downscale_image(self, input_image) -> np.ndarray:
         """
         Return the image (array) of reduced image 
 
