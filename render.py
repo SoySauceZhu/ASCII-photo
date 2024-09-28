@@ -7,8 +7,8 @@ class Render(RenderBase):
     def __init__(self, output_resolution: tuple):
         super().__init__(output_resolution)
         # TODO: parameters could be customized
-        self.font = cv2.FONT_HERSHEY_SIMPLEX
-        self.font_scale = 0.4
+        self.font = cv2.FONT_HERSHEY_PLAIN
+        self.font_scale = 1
         self.font_thickness = 1
         self.font_color = (255, 255, 255)
 
@@ -31,14 +31,27 @@ class Render(RenderBase):
 
 if __name__ == '__main__':
     import testfile.randomAscii as rand
+    import time
+
     render = Render((1080, 1920))
 
+    prev_time = time.time()
 
     while True:
         array = rand.generate_ascii_array(96, 128)
         image = render.ascii_frame(array)
 
+        curr_time = time.time()
+        fps = 1 / (curr_time - prev_time)
+        prev_time = curr_time
+
+        text = f"FPS: {int(fps)}"
+        cv2.putText(image, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                    1, (255, 255, 255), 2, cv2.LINE_AA)
+
         cv2.imshow("image", image)
+
+        prev_time = time.time()
 
         if cv2.waitKey(1) == ord('q'):
             break
