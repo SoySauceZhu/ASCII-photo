@@ -7,7 +7,7 @@ from processBase import ProcessBase
 
 
 class Processor(ProcessBase):
-    def __init__(self, reduced_resolution: int, chars=" _:Il!i+/rxnjfJUFCQ0OZ*#MW&8%B@$", aspect_ratio=(4, 3)):
+    def __init__(self, reduced_resolution: int, chars="$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`\\'.   ", aspect_ratio=(4, 3)):
         super().__init__(reduced_resolution, chars, aspect_ratio)
 
     def map_value(self, x):

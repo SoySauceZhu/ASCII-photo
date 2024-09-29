@@ -22,7 +22,7 @@ class ProcessBase(ABC):
         """
         self.reduced_rows = reduced_resolution
         self.reduced_cols = reduced_resolution * aspect_ratio[0] // aspect_ratio[1]
-        self.chars = chars
+        self.chars = chars[::-1]
         self.aspect_ratio = aspect_ratio
 
     @abstractmethod
