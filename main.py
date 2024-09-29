@@ -23,8 +23,9 @@ def main(save=False, ratio_aspect=(16, 9), reduced_resolution=96, output_resolut
 
     prev_time = time.time()
 
-    proc = Processor(96, aspect_ratio=ratio_aspect, chars=chars, reduced_resolution=reduced_resolution)
-    rend = Render(output_resolution, font=font, scale=scale, thickness=thickness, color=color)
+    proc = Processor(96, aspect_ratio=ratio_aspect, chars=chars)
+    rend = Render(output_resolution, font=font, scale=scale,
+                  thickness=thickness, color=color)
 
     while True:
         ret, frame = cam.read()
