@@ -4,7 +4,7 @@ import cv2
 import time
 
 
-def main(save=False):
+def main(save=False, ratio_aspect=(16, 9), reduced_resolution=96, output_resolution=(1080, 1920), chars="$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`\\'.   ", font=cv2.FONT_HERSHEY_PLAIN, scale=1, thickness=1, color=(255, 255, 255)):
     # Open the default camera
     cam = cv2.VideoCapture(0)
 
@@ -23,8 +23,8 @@ def main(save=False):
 
     prev_time = time.time()
 
-    proc = Processor(96, aspect_ratio=(16,9))
-    rend = Render((1080, 1920))
+    proc = Processor(96, aspect_ratio=ratio_aspect, chars=chars, reduced_resolution=reduced_resolution)
+    rend = Render(output_resolution, font=font, scale=scale, thickness=thickness, color=color)
 
     while True:
         ret, frame = cam.read()
