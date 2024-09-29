@@ -7,7 +7,7 @@ inherit from this interface
 and implement api in the class
 
 input: image (np.ndarray)
-output: image (np.ndarray)
+output: ascii array (np.ndarray)
 """
 
 from abc import ABC, abstractmethod
@@ -15,16 +15,18 @@ import numpy as np
 
 
 class ProcessBase(ABC):
-    def __init__(self, reduced_resolution: tuple):
+    def __init__(self, reduced_resolution: int, chars, aspect_ratio):
         """
         Constructor takes in a tuple of (width, height),
         defining the output image shape as class attributes
         """
-        self.height = reduced_resolution[0]
-        self.width = reduced_resolution[1]
+        self.reduced_rows = reduced_resolution
+        self.reduced_cols = reduced_resolution * aspect_ratio[0] // aspect_ratio[1]
+        self.chars = chars
+        self.aspect_ratio = aspect_ratio
 
     @abstractmethod
-    def downscale_image(self, input_image) -> np.ndarray:
+    def ascii_array(self, input_image) -> np.ndarray:
         """
         Return the image (array) of reduced image 
 

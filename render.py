@@ -4,13 +4,8 @@ from renderBase import RenderBase
 
 
 class Render(RenderBase):
-    def __init__(self, output_resolution: tuple):
-        super().__init__(output_resolution)
-        # TODO: parameters could be customized
-        self.font = cv2.FONT_HERSHEY_PLAIN
-        self.font_scale = 1
-        self.font_thickness = 1
-        self.font_color = (255, 255, 255)
+    def __init__(self, output_resolution: tuple, font=cv2.FONT_HERSHEY_PLAIN, scale=1, thickness=1, color=(255,255,255)):
+        super().__init__(output_resolution, font, scale, thickness, color)
 
     def ascii_frame(self, ascii_array):
         canvas = np.zeros((self.height, self.width, 3), dtype=np.uint8)
@@ -47,7 +42,7 @@ if __name__ == '__main__':
 
         text = f"FPS: {int(fps)}"
         cv2.putText(image, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
-                    1, (255, 255, 255), 2, cv2.LINE_AA)
+                    1, (0, 255, 0), 2, cv2.LINE_AA)
 
         cv2.imshow("image", image)
 
